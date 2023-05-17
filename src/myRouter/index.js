@@ -15,7 +15,7 @@ export default class VueRouter {
     _Vue.mixin({
       beforeCreate() {
         if (this.$options.router) {
-          _Vue.prototype.$router = this.$options.$router;
+          _Vue.prototype.$router = this.$options.router;
           this.$options.router.init();
         }
       },
@@ -33,6 +33,7 @@ export default class VueRouter {
   init() {
     this.createRouteMap();
     this.initComponents(_Vue);
+    this.initEvent()
   }
   // 这个函数的作用是把routes中的信息转成健值对 存入routerMap中
   createRouteMap() {
@@ -53,10 +54,8 @@ export default class VueRouter {
           e.preventDefault();
           // 当我们点击a链接的时候要做两件事
           // 2. 调用history.pushState方法,并将需要跳转或者跳转后的连接给到路由对象的data属性上的current属性上
-          history.pushState({}, "", this.to);
-          console.log(this);
-          //   debugger;
-          //   this.$router.data.current = this.to;
+          history.pushState({}, "", this.to)
+          this.$router.data.current = this.to;
         },
       },
     });
@@ -66,5 +65,10 @@ export default class VueRouter {
         return h(currentComponents);
       },
     });
+  }
+  initEvent(){
+    window.addEventListener('popstate',(e) => {
+        this.data.current = window.location.pathname
+    })
   }
 }
