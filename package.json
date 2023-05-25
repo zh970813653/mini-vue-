@@ -5,10 +5,13 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint --fix"
+    "lint": "vue-cli-service lint --fix",
+    "v-dev": "parcel virtual-dom/index.html --open",
+    "v-build": "parcel build virtual-dom/index.html"
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "snabbdom": "^2.1.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
@@ -26,6 +29,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "lint-staged": "^11.1.2",
+    "parcel-bundler": "^1.12.5",
     "prettier": "^2.4.1",
     "vue-template-compiler": "^2.6.14"
   },
@@ -34,7 +38,6 @@
     "env": {
       "node": true
     },
-
     "extends": [
       "plugin:vue/essential"
     ],
@@ -42,7 +45,7 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "no-debugger":"off"
+      "no-debugger": "off"
     }
   },
   "browserslist": [
